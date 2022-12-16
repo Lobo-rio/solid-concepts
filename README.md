@@ -28,4 +28,4 @@ $ npm run start:prod
 ### GitHub Analytics
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Lobo-rio)](https://github.com/lobo-rio/github-readme-stats)
 
-Nest is [MIT licensed](LICENSE).
+Nest is [MIT licensed](LICENSE). 
