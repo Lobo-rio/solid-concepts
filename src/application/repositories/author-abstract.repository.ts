@@ -1,6 +1,6 @@
 import { AuthorEntity } from "../entities/author.entity";
 
-export abstract class AuthorRepository {
+export abstract class AuthorAbstractRepository {
     abstract findMany(): Promise<AuthorEntity[] | null>
     abstract findByEmail(): Promise<AuthorEntity | null>
     abstract findById(): Promise<AuthorEntity | null>
