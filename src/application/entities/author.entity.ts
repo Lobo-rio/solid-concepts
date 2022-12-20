@@ -4,9 +4,11 @@ import {
     CreateDateColumn,
     DeleteDateColumn,
     Entity,
+    OneToMany,
     PrimaryGeneratedColumn,
     UpdateDateColumn
 } from "typeorm";
+import { PublicationEntity } from "./publication.entity";
 
 @Entity({ name: 'author' })
 export class AuthorEntity {
@@ -25,6 +27,9 @@ export class AuthorEntity {
     @Column({ name: 'path-image' })
     @ApiProperty()
     pathImage?: string;
+
+    @OneToMany(() => PublicationEntity, (publication) => publication.authorId)
+    publications: PublicationEntity[]
 
     @CreateDateColumn({ name: 'created-at '})
     @ApiProperty()
