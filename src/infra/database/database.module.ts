@@ -5,4 +5,4 @@ import { databaseProviders } from '../database/sqlite/database.providers';
   providers: [...databaseProviders],
   exports: [...databaseProviders],
 })
-export class DatabaseModule {}
+export class DataBaseModule {}
