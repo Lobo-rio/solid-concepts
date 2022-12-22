@@ -1,15 +1,19 @@
 import { NotFoundException, ConflictException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { CreatePublicationDto } from "src/application/use-cases/publication/dto/create-publication.dto";
-import { UpdatePublicationDto } from "src/application/use-cases/publication/dto/update-publication.dto";
 import { Repository } from "typeorm";
+
+import { AuthorEntity } from "../../../application/entities/author.entity";
+import { CreatePublicationDto } from "../../../application/use-cases/publication/dto/create-publication.dto";
+import { UpdatePublicationDto } from "../../../application/use-cases/publication/dto/update-publication.dto";
 import { PublicationEntity } from "../../../application/entities/publication.entity";
 import { PublicationAbstractRepository } from "../../../application/repositories/publication-abstract.repository";
 
 export class PublicationRepository implements PublicationAbstractRepository {
     constructor(
         @InjectRepository(PublicationEntity)
-        private publicationRepository: Repository<PublicationEntity>
+        private publicationRepository: Repository<PublicationEntity>,
+        @InjectRepository(AuthorEntity)
+        private authorRepository: Repository<AuthorEntity>,
     ) {}
     async findMany(): Promise<PublicationEntity[]> {
         return await this.publicationRepository.find();
@@ -30,6 +34,10 @@ export class PublicationRepository implements PublicationAbstractRepository {
         const publication = await this.publicationRepository.findOne({ where: {  title: data.title }});
 
         if (publication) return new ConflictException({ message: 'Publication existed!' });
+
+        const author = await this.authorRepository.findOne({ where: { id: data.authorId } });
+
+        if (!author) return new NotFoundException({ message: 'Author not found!' }); 
 
         await this.publicationRepository.save(this.publicationRepository.create(data));
     }

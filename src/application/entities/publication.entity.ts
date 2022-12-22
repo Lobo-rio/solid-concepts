@@ -25,6 +25,10 @@ export class PublicationEntity {
     @Column()
     @ApiProperty({ name: 'company-sector' })
     companySector: string;
+    
+    @Column()
+    @ApiProperty()
+    description: string;
 
     @Column({ name: 'path-image' })
     @ApiProperty()

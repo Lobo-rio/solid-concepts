@@ -9,10 +9,14 @@ import { FindByIdPublicationService } from './use-cases/publication/find-by-id-p
 import { FindManyPublicationService } from './use-cases/publication/find-many-publication.service';
 import { RemovePublicationService } from './use-cases/publication/remove-publication.service';
 import { UpdatePublicationService } from './use-cases/publication/update-publication.service';
+import { AuthorEntity } from './entities/author.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([PublicationEntity])
+    TypeOrmModule.forFeature([
+      AuthorEntity,
+      PublicationEntity,
+    ])
   ],
   controllers: [PublicationController],
   providers: [

@@ -18,7 +18,7 @@ export class CreatePublicationDto {
     description: string;
 
     @ApiProperty()
-    linkImage?: string;
+    pathImage?: string;
 
     @IsNotEmpty()
     @ApiProperty()
