@@ -13,6 +13,7 @@ import { FindByIdPublicationService } from "../../../application/use-cases/publi
 import { FindManyPublicationService } from "../../../application/use-cases/publication/find-many-publication.service";
 import { RemovePublicationService } from "../../../application/use-cases/publication/remove-publication.service";
 import { UpdatePublicationService } from "../../../application/use-cases/publication/update-publication.service";
+import { FindByAuthorPublicationService } from "../../../application/use-cases/publication/find-by-author-publication.service";
 
 import { CreatePublicationDto } from "../../../application/use-cases/publication/dto/create-publication.dto";
 import { UpdatePublicationDto } from "../../../application/use-cases/publication/dto/update-publication.dto";
@@ -22,6 +23,7 @@ export class PublicationController {
     constructor(
         private readonly findManyService: FindManyPublicationService,
         private readonly findByIdService: FindByIdPublicationService,
+        private readonly findByAuthorService: FindByAuthorPublicationService,
         private readonly createService: CreatePublicationService,
         private readonly updateService: UpdatePublicationService,
         private readonly removeService: RemovePublicationService,
@@ -35,6 +37,11 @@ export class PublicationController {
     @Get(':id')
     async findById(@Param('id') id: string) {
         return await this.findByIdService.execute(id);
+    }
+
+    @Get(':authorId/author')
+    async findByAuthor(@Param('authorId') authorId: string) {
+        return await this.findByAuthorService.execute(authorId);
     }
 
     @Post()

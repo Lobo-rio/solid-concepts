@@ -10,7 +10,7 @@ import { PublicationModule } from './application/publication.module';
       database: './src/infra/database/gsm-db.sqlite',
       entities: [__dirname + '/**/*.entity{.js,.ts}'],
       synchronize: true,
-      logging: true,
+      logging: false,
     }),
     AuthorModule,
     PublicationModule,

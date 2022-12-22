@@ -10,6 +10,7 @@ import { FindManyPublicationService } from './use-cases/publication/find-many-pu
 import { RemovePublicationService } from './use-cases/publication/remove-publication.service';
 import { UpdatePublicationService } from './use-cases/publication/update-publication.service';
 import { AuthorEntity } from './entities/author.entity';
+import { FindByAuthorPublicationService } from './use-cases/publication/find-by-author-publication.service';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { AuthorEntity } from './entities/author.entity';
     UpdatePublicationService,
     FindManyPublicationService,
     FindByIdPublicationService,
+    FindByAuthorPublicationService,
     {
       provide: "PublicationAbstractRepository",
       useClass: PublicationRepository,
