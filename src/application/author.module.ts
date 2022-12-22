@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
+import { AuthorController } from '../infra/http/controllers/author.controller';
 import { AuthorRepository } from '../infra/database/repositories/author.repository';
 import { AuthorEntity } from './entities/author.entity';
 import { CreateAuthorService } from './use-cases/author/create-author.service';
@@ -13,12 +14,24 @@ import { UpdateAuthorService } from './use-cases/author/update-author.service';
   imports: [
     TypeOrmModule.forFeature([AuthorEntity])
   ],
-  controllers: [],
+  controllers: [AuthorController],
   providers: [
+    CreateAuthorService,
+    RemoveAuthorService,
+    UpdateAuthorService,
+    FindManyAuthorService,
+    FindByIdAuthorService,
     {
-        provide: "AuthorAbstractRepository",
-        useClass: AuthorRepository,
-    },
+      provide: "AuthorAbstractRepository",
+      useClass: AuthorRepository,
+    }
+  ],
+  exports: [
+    CreateAuthorService,
+    RemoveAuthorService,
+    UpdateAuthorService,
+    FindManyAuthorService,
+    FindByIdAuthorService,
   ],
 })
-export class ApplicationModule {}
+export class AuthorModule {}

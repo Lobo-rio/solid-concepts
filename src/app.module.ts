@@ -1,13 +1,16 @@
 import { Module } from '@nestjs/common';
-import { ApplicationModule } from './application/application.module';
-import { DataBaseModule } from './infra/database/database.module';
-import { HttpModule } from './infra/http/http.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { AuthorModule } from './application/author.module';
 
 @Module({
   imports: [
-    DataBaseModule,
-    HttpModule,
-    ApplicationModule,
+    TypeOrmModule.forRoot({
+      type: 'sqlite',
+      database: './src/infra/database/gsm-db.sqlite',
+      entities: [__dirname + '/**/*.entity{.js,.ts}'],
+      synchronize: true,
+    }),
+    AuthorModule,
   ],
   controllers: [],
   providers: [],
