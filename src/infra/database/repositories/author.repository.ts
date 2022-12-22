@@ -6,6 +6,7 @@ import { CreateAuthorDto } from "../../../application/use-cases/author/dto/creat
 import { UpdateAuthorDto } from "../../../application/use-cases/author/dto/update-author.dto";
 import { AuthorEntity } from "../../../application/entities/author.entity";
 import { AuthorAbstractRepository } from "../../../application/repositories/author-abstract.repository";
+import { identity } from "rxjs";
 @Injectable()
 export class AuthorRepository implements AuthorAbstractRepository {
     constructor(
@@ -20,7 +21,7 @@ export class AuthorRepository implements AuthorAbstractRepository {
         return await this.authorRepository.findOne({ where: { email } });
     }
     async findById(id: string): Promise<AuthorEntity | NotFoundException> {
-        const author = await this.authorRepository.findOne({ where: { id } });
+        const author = await this.authorRepository.findOne({where: { id } });
         if (!author) return new NotFoundException('Author not found!'); 
        
         return author;

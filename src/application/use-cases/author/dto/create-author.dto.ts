@@ -14,11 +14,11 @@ export class CreateAuthorDto {
 
     @IsNotEmpty()
     @ApiProperty()
-    sector: CompanySector;
+    sector: string;
 
     @IsNotEmpty()
     @ApiProperty()
-    linkImage?: string;
+    pathImage?: string;
 }
 
 enum CompanySector {

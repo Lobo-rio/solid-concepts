@@ -4,7 +4,7 @@ import { CreateAuthorDto } from "../use-cases/author/dto/create-author.dto";
 import { UpdateAuthorDto } from "../use-cases/author/dto/update-author.dto";
 
 export abstract class AuthorAbstractRepository {
-    abstract findMany(): Promise<AuthorEntity[] | null>
+    abstract findMany(): Promise<AuthorEntity[]>
     abstract findByEmail(email: string): Promise<AuthorEntity | null>
     abstract findById(id: string): Promise<AuthorEntity | NotFoundException>
     abstract create(data: CreateAuthorDto): Promise<void | ConflictException>

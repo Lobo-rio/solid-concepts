@@ -20,10 +20,10 @@ import { UpdateAuthorService } from "../../../application/use-cases/author/updat
 export class AuthorController {
     constructor(
         private readonly findManyService: FindManyAuthorService,
-        /*private readonly findByIdService: FindByIdAuthorService,
+        private readonly findByIdService: FindByIdAuthorService,
         private readonly createService: CreateAuthorService,
         private readonly updateService: UpdateAuthorService,
-        private readonly removeService: RemoveAuthorService,*/
+        private readonly removeService: RemoveAuthorService,
     ) {}
 
     @Get()
@@ -32,22 +32,22 @@ export class AuthorController {
     }
 
     @Get(':id')
-    async findById(@Param() id: string) {
-        return {} //await this.findByIdService.execute(id);
+    async findById(@Param('id') id: string) {
+        return await this.findByIdService.execute(id);
     }
 
     @Post()
     async create(@Body() body: CreateAuthorDto) {
-        return {}//await this.createService.execute(body);
+        return await this.createService.execute(body);
     }
 
     @Put(':id')
-    async update(@Param() id: string, @Body() body: UpdateAuthorDto) {
-        return {}//await this.updateService.execute(id, body);
+    async update(@Param('id') id: string, @Body() body: UpdateAuthorDto) {
+        return await this.updateService.execute(id, body);
     }
 
     @Delete(':id')
-    async remove(@Param() id: string) {
-        return {}//await this.removeService.execute(id);
+    async remove(@Param('id') id: string) {
+        return await this.removeService.execute(id);
     }
 }

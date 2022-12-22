@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthorModule } from './application/author.module';
+import { PublicationModule } from './application/publication.module';
 
 @Module({
   imports: [
@@ -9,8 +10,10 @@ import { AuthorModule } from './application/author.module';
       database: './src/infra/database/gsm-db.sqlite',
       entities: [__dirname + '/**/*.entity{.js,.ts}'],
       synchronize: true,
+      logging: true,
     }),
     AuthorModule,
+    PublicationModule,
   ],
   controllers: [],
   providers: [],

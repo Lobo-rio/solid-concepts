@@ -1,24 +1,49 @@
+import { NotFoundException, ConflictException } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { CreatePublicationDto } from "src/application/use-cases/publication/dto/create-publication.dto";
+import { UpdatePublicationDto } from "src/application/use-cases/publication/dto/update-publication.dto";
+import { Repository } from "typeorm";
 import { PublicationEntity } from "../../../application/entities/publication.entity";
 import { PublicationAbstractRepository } from "../../../application/repositories/publication-abstract.repository";
 
 export class PublicationRepository implements PublicationAbstractRepository {
-    findMany(): Promise<PublicationEntity[]> {
-        throw new Error("Method not implemented.");
+    constructor(
+        @InjectRepository(PublicationEntity)
+        private publicationRepository: Repository<PublicationEntity>
+    ) {}
+    async findMany(): Promise<PublicationEntity[]> {
+        return await this.publicationRepository.find();
     }
-    findByEmail(): Promise<PublicationEntity> {
-        throw new Error("Method not implemented.");
+    async findByAuthor(authorId: string): Promise<PublicationEntity[] | NotFoundException> {
+        const publications = await this.publicationRepository.find({where: { authorId } });
+        if (!publications) return new NotFoundException('Publications not found!'); 
+       
+        return publications;
     }
-    findById(): Promise<PublicationEntity> {
-        throw new Error("Method not implemented.");
+    async findById(id: string): Promise<PublicationEntity | NotFoundException> {
+        const publication = await this.publicationRepository.findOne({where: { id } });
+        if (!publication) return new NotFoundException('Publication not found!'); 
+       
+        return publication;
     }
-    create(): Promise<void> {
-        throw new Error("Method not implemented.");
-    }
-    update(): Promise<void> {
-        throw new Error("Method not implemented.");
-    }
-    remove(): Promise<void> {
-        throw new Error("Method not implemented.");
-    }
+    async create(data: CreatePublicationDto): Promise<void | ConflictException> {
+        const publication = await this.publicationRepository.findOne({ where: {  title: data.title }});
 
+        if (publication) return new ConflictException({ message: 'Publication existed!' });
+
+        await this.publicationRepository.save(this.publicationRepository.create(data));
+    }
+    async update(id: string, data: UpdatePublicationDto): Promise<void | NotFoundException> {
+        const publication = await this.publicationRepository.findOne({ where: { id } });
+
+        if (!publication) return new NotFoundException({ message: 'Publication not found!' });
+        
+        this.publicationRepository.merge(publication, data);
+
+        await this.publicationRepository.save(publication);
+    }
+    async remove(id: string): Promise<void | NotFoundException> {
+        await this.findById(id);
+        await this.publicationRepository.softDelete(id);
+    }
 }
