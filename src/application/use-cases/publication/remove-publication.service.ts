@@ -1,6 +1,6 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { PublicationAbstractRepository } from "src/application/repositories/publication-abstract.repository";
-import { AuthorAbstractRepository } from "../../repositories/author-abstract.repository";
+
+import { PublicationAbstractRepository } from "../../../application/repositories/publication-abstract.repository";
 
 @Injectable()
 export class RemovePublicationService {

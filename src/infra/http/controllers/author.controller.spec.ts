@@ -66,31 +66,31 @@ describe('AuthorController', () => {
     expect(updateAuthorService).toBeDefined();
     expect(removeAuthorService).toBeDefined();
     expect(findManyAuthorService).toBeDefined();
-    expect(findManyAuthorService).toBeDefined();
+    expect(findByIdAuthorService).toBeDefined();
   });
 
   describe('create author', () => {
-      it.todo('should return a users list entity successfully');
+      it.todo('should return a author created successfully');
       it.todo('should throw an exception');
   });
 
   describe('update author', () => {
-    it.todo('should return a users list entity successfully');
+    it.todo('should return a author updated successfully');
     it.todo('should throw an exception');
   });
 
   describe('remove author', () => {
-    it.todo('should return a users list entity successfully');
+    it.todo('should return a author removed successfully');
     it.todo('should throw an exception');
   });
 
   describe('list author', () => {
-    it.todo('should return a users list entity successfully');
+    it.todo('should return a authors list entity successfully');
     it.todo('should throw an exception');
   });
 
   describe('list the one author', () => {
-    it.todo('should return a users list entity successfully');
+    it.todo('should return a author entity successfully');
     it.todo('should throw an exception');
   });
   

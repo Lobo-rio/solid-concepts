@@ -1,5 +1,6 @@
 import { Inject } from "@nestjs/common";
-import { PublicationAbstractRepository } from "src/application/repositories/publication-abstract.repository";
+
+import { PublicationAbstractRepository } from "../../../application/repositories/publication-abstract.repository";
 import { CreatePublicationDto } from "./dto/create-publication.dto";
 
 export class CreatePublicationService {
