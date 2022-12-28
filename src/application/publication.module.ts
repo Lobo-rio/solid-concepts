@@ -3,14 +3,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { PublicationController } from '../infra/http/controllers/publication.controller';
 import { PublicationRepository } from '../infra/database/repositories/publication.repository';
-import { PublicationEntity } from './entities/publication.entity';
 import { CreatePublicationService } from './use-cases/publication/create-publication.service';
 import { FindByIdPublicationService } from './use-cases/publication/find-by-id-publication.service';
 import { FindManyPublicationService } from './use-cases/publication/find-many-publication.service';
 import { RemovePublicationService } from './use-cases/publication/remove-publication.service';
 import { UpdatePublicationService } from './use-cases/publication/update-publication.service';
-import { AuthorEntity } from './entities/author.entity';
 import { FindByAuthorPublicationService } from './use-cases/publication/find-by-author-publication.service';
+import { AuthorEntity } from '../infra/database/entities/author.entity';
+import { PublicationEntity } from '../infra/database/entities/publication.entity';
 
 @Module({
   imports: [

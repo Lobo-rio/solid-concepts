@@ -1,5 +1,6 @@
 import { ConflictException, Injectable, NotFoundException } from "@nestjs/common";
-import { AuthorEntity } from "../entities/author.entity";
+
+import { AuthorEntity } from "../../infra/database/entities/author.entity";
 import { CreateAuthorDto } from "../use-cases/author/dto/create-author.dto";
 import { UpdateAuthorDto } from "../use-cases/author/dto/update-author.dto";
 

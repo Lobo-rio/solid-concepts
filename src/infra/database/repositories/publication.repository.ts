@@ -2,11 +2,11 @@ import { NotFoundException, ConflictException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 
-import { AuthorEntity } from "../../../application/entities/author.entity";
 import { CreatePublicationDto } from "../../../application/use-cases/publication/dto/create-publication.dto";
 import { UpdatePublicationDto } from "../../../application/use-cases/publication/dto/update-publication.dto";
-import { PublicationEntity } from "../../../application/entities/publication.entity";
 import { PublicationAbstractRepository } from "../../../application/repositories/publication-abstract.repository";
+import { PublicationEntity } from "../entities/publication.entity";
+import { AuthorEntity } from "../entities/author.entity";
 
 export class PublicationRepository implements PublicationAbstractRepository {
     constructor(

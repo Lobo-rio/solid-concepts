@@ -1,5 +1,6 @@
 import { ConflictException, NotFoundException } from "@nestjs/common";
-import { PublicationEntity } from "../entities/publication.entity";
+
+import { PublicationEntity } from "../../infra/database/entities/publication.entity";
 import { CreatePublicationDto } from "../use-cases/publication/dto/create-publication.dto";
 import { UpdatePublicationDto } from "../use-cases/publication/dto/update-publication.dto";
 

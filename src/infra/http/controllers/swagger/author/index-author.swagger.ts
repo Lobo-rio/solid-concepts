@@ -1,3 +1,3 @@
-import { AuthorEntity } from "../../../../../application/entities/author.entity";
+import { AuthorEntity } from "../../../../../infra/database/entities/author.entity";
 
 export class IndexAuthorSwagger extends AuthorEntity {}

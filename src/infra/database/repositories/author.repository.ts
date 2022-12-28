@@ -4,9 +4,8 @@ import { Repository } from "typeorm";
 
 import { CreateAuthorDto } from "../../../application/use-cases/author/dto/create-author.dto";
 import { UpdateAuthorDto } from "../../../application/use-cases/author/dto/update-author.dto";
-import { AuthorEntity } from "../../../application/entities/author.entity";
 import { AuthorAbstractRepository } from "../../../application/repositories/author-abstract.repository";
-import { identity } from "rxjs";
+import { AuthorEntity } from "../entities/author.entity";
 @Injectable()
 export class AuthorRepository implements AuthorAbstractRepository {
     constructor(
